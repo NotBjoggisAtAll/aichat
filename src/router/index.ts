@@ -7,6 +7,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue')
+    },
+    {
+      path: '/thread/:threadId',
+      name: 'thread',
+      component: () => import('../views/ThreadView.vue')
     }
   ]
 })
