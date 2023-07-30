@@ -38,8 +38,30 @@ a,
   background-color: darkgreen;
 }
 
+.btn-delete {
+  background-color: red;
+}
+
+.btn-delete:hover {
+  background-color: darkred;
+}
+
+.btn-delete:active {
+  background-color: rgb(95, 1, 1);
+}
+
+
+
 .flex {
   display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
 
 .flex-fill {
@@ -48,6 +70,14 @@ a,
 
 .p-1 {
   padding: 1rem;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.mr-1 {
+  margin-right: 0.5rem;
 }
 
 .container {

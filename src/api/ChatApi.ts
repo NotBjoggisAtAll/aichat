@@ -2,6 +2,7 @@ import type ChatCommand from '@/command/ChatCommand'
 import type Message from '@/resource/Message'
 import type { AxiosResponse } from 'axios'
 import BaseApi from './BaseApi'
+
 export default class ChatApi extends BaseApi {
   constructor() {
     super('/v1')
@@ -24,6 +25,11 @@ export default class ChatApi extends BaseApi {
 
   async sendMessage(message: ChatCommand): Promise<AxiosResponse<Message>> {
     const response = await this.http.post<Message>('/chat', message)
+    return response
+  }
+
+  async deleteThread(threadId: string): Promise<AxiosResponse<void>> {
+    const response = await this.http.delete<void>(`/thread/${threadId}`)
     return response
   }
 }

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import ChatApi from '@/api/ChatApi'
-import { onMounted, ref } from 'vue'
-import Chat from '@/components/Chat.vue'
+import ChatApi from '@/api/ChatApi';
+import { onMounted, ref } from 'vue';
 
 const api = new ChatApi()
 
@@ -12,11 +11,6 @@ const threads = ref<string[]>([])
 onMounted(() => {
   getAllThreads()
 })
-async function createThread() {
-  const response = await api.createThread()
-  threadId.value = response.data
-  getAllThreads()
-}
 
 async function getAllThreads() {
   const response = await api.getAllThreads()
@@ -26,15 +20,17 @@ async function getAllThreads() {
 
 <template>
   <main>
-    <div class="container border">
-      <h1>Chat</h1>
-      <button class="btn" @click="createThread()">Create new Thread</button>
-    </div>
-    <div class="container border" v-for="id in threads" :key="id">
-      <span>Thread {{ id }}</span>
-      <Chat :thread-id="id" />
+    <div class="container">
+      <h1>Select a thread on the left</h1>
     </div>
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  margin: auto;
+  font-size: 1rem;
+  height: 80hv;
+  width: 50vh;
+}
+</style>
