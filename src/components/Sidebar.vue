@@ -9,24 +9,23 @@
       </button>
     </div>
     <div class="container">
-      <router-link
-        class="router-link"
+      <SidebarItem
         v-for="thread in threads"
         :key="thread"
-        :to="`/thread/${thread}`"
-        >{{ thread }}</router-link
-      >
+        :thread-id="thread"
+        @delete-thread="getAllThreads"
+      />
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
 import ChatApi from '@/api/ChatApi'
-import { onMounted, ref, type PropType } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import SidebarItem from './SidebarItem.vue'
 
 const api = new ChatApi()
-
 const threads = ref<string[]>([])
 const router = useRouter()
 onMounted(async () => {
@@ -40,19 +39,21 @@ async function createThread() {
 }
 
 async function getAllThreads() {
+  console.log('getAllThreads')
   const response = await api.getAllThreads()
   threads.value = response.data
 }
 </script>
 
 <style scoped>
-
 span {
   margin: auto;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
-button {
-  padding: 0.5rem;
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
 }
 
 .container {
