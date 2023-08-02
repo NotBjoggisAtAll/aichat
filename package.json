@@ -12,7 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@bjoggis/css": "^1.0.1",
+    "@bjoggis/css": "^1.0.2",
     "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
     "pinia": "^2.1.6",

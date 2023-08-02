@@ -46,21 +46,6 @@ async function getAllThreads() {
 </script>
 
 <style scoped>
-.router-link {
-  background-color: greenyellow;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-
-  color: black;
-}
-
-.router-link-exact-active {
-  background-color: green;
-}
-
-.router-link:hover {
-  background-color: green;
-}
 
 span {
   margin: auto;

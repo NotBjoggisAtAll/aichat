@@ -68,9 +68,16 @@ async function sendMessage() {
 .chat-message {
   padding: 1rem;
   margin: 1rem;
-  background-color: lightblue;
+  background-color: var(--color-background-mute);
   border-radius: 1rem;
   width: 40%;
+}
+
+input {
+  background-color: var(--color-background-mute);
+  color: var(--color-text);
+  border-color: var(--color-background-soft);
+  font-size: 1rem;
 }
 .right {
   text-align: right;
@@ -83,6 +90,11 @@ async function sendMessage() {
   flex-direction: column-reverse;
   height: 80vh;
   border: 1px solid black;
+  background-color: var(--color-background-soft);
   overflow-y: auto;
+}
+
+p {
+  color: var(--color-text);
 }
 </style>
