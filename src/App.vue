@@ -10,5 +10,8 @@ import Sidebar from './components/Sidebar.vue'
   </div>
 </template>
 
-<style scoped>
+<style >
+.code-block {
+  border: 1px solid #ccc;
+}
 </style>

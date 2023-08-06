@@ -1,11 +1,35 @@
 <script setup lang="ts">
 import ChatApi from '@/api/ChatApi'
 import type Message from '@/resource/Message'
+import hljs from 'highlight.js'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Loader from './Loader.vue'
 
 const messages = ref<Message[]>([])
+const styledMessages = computed(() => {
+  return messages.value.map((message) => {
+    return {
+      ...message,
+      message: () => {
+        // find text between 3 backticks. Remove the first word after the backticks that is used to indicate the language
+        const regex = /```(.*)```/s
+        const messages = message.message.split(regex)
+        return messages
+          .map((message, index) => {
+            if (index % 2 === 0) {
+              return message
+            } else {
+              return `<div class="code-block"><pre><code>${
+                hljs.highlightAuto(message).value
+              }</code></pre></div>`
+            }
+          })
+          .join('')
+      }
+    }
+  })
+})
 
 const isLoading = ref<boolean>(true)
 
@@ -51,10 +75,10 @@ async function sendMessage() {
     <div class="chat-container container">
       <div
         class="chat-message"
-        :class="message.isBot ? 'right' : 'left'"
-        v-for="message in messages"
+        :class="message.isBot ? 'left' : 'right'"
+        v-for="message in styledMessages"
       >
-        <p>{{ message.message }}</p>
+        <p v-html="message.message()" />
       </div>
     </div>
   </div>
@@ -70,7 +94,7 @@ async function sendMessage() {
   margin: 1rem;
   background-color: var(--color-background-mute);
   border-radius: 1rem;
-  width: 40%;
+  width: 80%;
 }
 
 input {
@@ -80,7 +104,7 @@ input {
   font-size: 1rem;
 }
 .right {
-  text-align: right;
+  /* text-align: right; */
   align-self: flex-end;
 }
 .left {
