@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ChatApi from '@/api/ChatApi';
 import { onMounted, ref } from 'vue';
+import WebSocketChat from '@/components/WebSocketChat.vue';
+
 
 const api = new ChatApi()
 
@@ -23,6 +25,7 @@ async function getAllThreads() {
     <div class="container">
       <h1>Select a thread on the left</h1>
     </div>
+    <WebSocketChat />
   </main>
 </template>
 

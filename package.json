@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@bjoggis/css": "^1.0.3",
+    "@stomp/stompjs": "^7.0.0",
     "@vueuse/core": "^10.3.0",
     "axios": "^1.4.0",
     "highlight.js": "^11.8.0",
