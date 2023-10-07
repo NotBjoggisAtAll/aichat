@@ -12,12 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { Client } from '@stomp/stompjs'
-import { rand } from '@vueuse/core'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { Client } from '@stomp/stompjs';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+
+const host = window.location.host
 
 const client = new Client({
-  brokerURL: 'ws://localhost:8082/ws',
+  brokerURL: `ws://${host}/ws`,
   logRawCommunication: true,
   onConnect: (frame) => {
     console.log('Connected')
