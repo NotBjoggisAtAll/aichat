@@ -18,7 +18,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 const host = window.location.host
 
 const client = new Client({
-  brokerURL: `ws://${host}/ws`,
+  brokerURL: `wss://${host}/ws`,
   logRawCommunication: true,
   onConnect: (frame) => {
     console.log('Connected')
