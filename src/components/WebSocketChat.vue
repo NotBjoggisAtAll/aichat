@@ -17,8 +17,10 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const host = window.location.host
 
+const brokerURL = import.meta.env.DEV ? `ws://${host}/ws` : `wss://${host}/ws`
+
 const client = new Client({
-  brokerURL: `wss://${host}/ws`,
+  brokerURL: brokerURL,
   logRawCommunication: true,
   onConnect: (frame) => {
     console.log('Connected')
@@ -26,14 +28,6 @@ const client = new Client({
     console.log(`Connected to: ${url}`)
     console.log(JSON.stringify(frame))
     
-    // client.subscribe('/topic/chat', (message) => {
-    //   messages.value.push('')
-    //   const receivedMessage = JSON.parse(message.body)
-    //   // simulateTyping(receivedMessage.message)
-    //   messages.value.push(receivedMessage.message)
-
-    //   console.log(`Received: ${message.body}`)
-    // })
     client.subscribe('/user/queue/response', (message) => {
       messages.value.push('')
       const receivedMessage = JSON.parse(message.body)
@@ -52,7 +46,7 @@ const client = new Client({
 
 const messages = ref<string[]>([])
 const message = ref<string>('')
-const threadId = ref<number | undefined>(1)
+const threadId = ref<number | undefined>(2)
 
 const messagesCombined = computed(() => messages.value.join(''))
 function sendMessage() {
@@ -63,25 +57,6 @@ function sendMessage() {
   messages.value.push(message.value)
   message.value = ''
 }
-
-// function simulateTyping(message: string) {
-//   return new Promise<void>((resolve) => {
-//     let i = 0
-//     const intervalId = setInterval(
-//       () => {
-//         if (i < message.length) {
-//           const letter = message.charAt(i)
-//           messages.value[messages.value.length - 1] += letter
-//           i++
-//         } else {
-//           clearInterval(intervalId)
-//           resolve()
-//         }
-//       },
-//       rand(5, 10)
-//     ) // Delay between each letter in milliseconds
-//   })
-// }
 
 onMounted(() => {
   client.activate()
