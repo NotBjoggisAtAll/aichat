@@ -34,7 +34,7 @@ onMounted(async () => {
 
 async function createThread() {
   const response = await api.createThread()
-  router.push({ name: 'thread', params: { threadId: response.data } })
+  router.push({ name: 'thread', params: { threadId: response.data.chatThreadId } })
   getAllThreads()
 }
 

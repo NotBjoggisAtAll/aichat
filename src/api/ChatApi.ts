@@ -2,14 +2,15 @@ import type ChatCommand from '@/command/ChatCommand'
 import type Message from '@/resource/Message'
 import type { AxiosResponse } from 'axios'
 import BaseApi from './BaseApi'
+import type ChatThreadResponse from '@/types/ChatThreadResponse'
 
 export default class ChatApi extends BaseApi {
   constructor() {
     super('/v1')
   }
 
-  async createThread(): Promise<AxiosResponse<string>> {
-    const response = await this.http.post<string>('/thread')
+  async createThread(): Promise<AxiosResponse<ChatThreadResponse>> {
+    const response = await this.http.post<ChatThreadResponse>('/thread')
     return response
   }
 
