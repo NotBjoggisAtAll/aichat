@@ -14,13 +14,13 @@ export default class ChatApi extends BaseApi {
     return response
   }
 
-  async getAllThreads(): Promise<AxiosResponse<string[]>> {
-    const response = await this.http.get<string[]>('/thread/ids')
+  async getAllThreads(): Promise<AxiosResponse<ChatThreadResponse[]>> {
+    const response = await this.http.get<ChatThreadResponse[]>('/thread')
     return response
   }
 
-  async getMessages(threadId: string): Promise<AxiosResponse<Message[]>> {
-    const response = await this.http.get<Message[]>(`/thread/${threadId}/messages`)
+  async getMessages(threadId: string): Promise<AxiosResponse<ChatThreadResponse>> {
+    const response = await this.http.get<ChatThreadResponse>(`/thread/${threadId}`)
     return response
   }
 
@@ -29,7 +29,7 @@ export default class ChatApi extends BaseApi {
     return response
   }
 
-  async deleteThread(threadId: string): Promise<AxiosResponse<void>> {
+  async deleteThread(threadId: number): Promise<AxiosResponse<void>> {
     const response = await this.http.delete<void>(`/thread/${threadId}`)
     return response
   }

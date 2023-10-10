@@ -11,8 +11,8 @@
     <div class="container">
       <SidebarItem
         v-for="thread in threads"
-        :key="thread"
-        :thread-id="thread"
+        :key="thread.chatThreadId"
+        :thread-id="thread.chatThreadId"
         @delete-thread="getAllThreads"
       />
     </div>
@@ -24,9 +24,10 @@ import ChatApi from '@/api/ChatApi'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import SidebarItem from './SidebarItem.vue'
+import type ChatThreadResponse from '@/types/ChatThreadResponse';
 
 const api = new ChatApi()
-const threads = ref<string[]>([])
+const threads = ref<ChatThreadResponse[]>([])
 const router = useRouter()
 onMounted(async () => {
   getAllThreads()

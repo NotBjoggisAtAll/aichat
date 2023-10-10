@@ -15,7 +15,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps({
   threadId: {
-    type: String,
+    type: Number,
     required: true
   }
 })
@@ -27,7 +27,7 @@ const route = useRoute()
 const router = useRouter()
 async function deleteThread() {
   await api.deleteThread(props.threadId)
-  if (route.params.threadId === props.threadId) {
+  if (route.params.threadId === String(props.threadId)) {
     router.push({ name: 'home' })
   }
   emit('deleteThread')
