@@ -47,7 +47,7 @@ async function getAllMessages() {
   const api = new ChatApi()
   const response = await api.getMessages(threadId.value)
   response.data.messages.map((message) => {
-    messages.value.push({message: message, isBot:false, id: '1', threadId: threadId.value})
+    messages.value.push({message: message.message, isBot:false, id: '1', threadId: threadId.value})
   })
   isLoading.value = false
 }

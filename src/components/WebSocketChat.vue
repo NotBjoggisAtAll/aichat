@@ -46,7 +46,7 @@ const client = new Client({
 
 const messages = ref<string[]>([])
 const message = ref<string>('')
-const threadId = ref<number | undefined>(2)
+const threadId = ref<number | undefined>(13)
 
 const messagesCombined = computed(() => messages.value.join(''))
 function sendMessage() {
